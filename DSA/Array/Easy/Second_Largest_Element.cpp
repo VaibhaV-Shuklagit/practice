@@ -1,6 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-int secondLargest(int arr[], int n)
+int BF_secondLargest(int arr[], int n)
+{
+    sort(arr, arr + n);
+    for (int i = n - 2; i >= 0; i--)
+    {
+        if (arr[i] != arr[n - 1])
+        {
+            return arr[i];
+        }
+    }
+    return -1;
+}
+int Optimal_secondLargest(int arr[], int n)
 {
     int largest = arr[0];
     int secondLargest = INT_MIN;
@@ -38,10 +50,9 @@ int main()
         {
             cin >> arr[i];
         }
-        int secondLargestElement = secondLargest(arr, n);
-        if (secondLargestElement != -1)
+        if (Optimal_secondLargest(arr,n) != -1)
         {
-            cout << "Second Largest Element in the Array is : " << secondLargestElement << endl;
+            cout << "Second Largest Element in the Array is : " << Optimal_secondLargest(arr,n) << endl;
         }
         else
         {

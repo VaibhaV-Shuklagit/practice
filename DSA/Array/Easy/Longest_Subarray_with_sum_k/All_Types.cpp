@@ -1,25 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int BF_Sub(vector<int> &arr, int k)
-{
-    int sub = 0;
-    for (int i = 0; i < arr.size(); i++)
-    {
-        int sum = 0;
-        int cnt = 0;
-        for (int j = i; j < arr.size(); j++)
-        {
-            sum = sum + arr[j];
-            cnt++;
-            if (sum == k)
-            {
-                sub = max(cnt, sub);
-            }
-        }
-    }
-    return sub;
-}
-int Better_Sub(vector<int> &arr, int k)
+int Most_optimal_Sub(vector<int> &arr, int k)
 {
     int preSum = 0;
     int len = 0;
@@ -34,12 +15,15 @@ int Better_Sub(vector<int> &arr, int k)
                 len = max(len, i + 1);
             }
         }
-        int rem = sum - k;
+        int rem = preSum - k;
         if (hash.find(rem) != hash.end())
         {
             len = max(len, i - hash[rem]);
         }
-        hash[preSum] = i;
+        if (hash.find(preSum) == hash.end())
+        {
+            hash[preSum] = i;
+        }
     }
     return len;
 }
@@ -62,7 +46,7 @@ int main()
         int k;
         cout << "Target : ";
         cin >> k;
-        cout << "The Length of the Longest Subarray with the Sum of K is " << Better_Sub(arr, k) << endl;
+        cout << "The Length of the Longest Subarray with the Sum of K is " << Most_optimal_Sub(arr, k) << endl;
     }
     return 0;
 }

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int removeDuplicates(vector<int> &nums)
+int BF_removeDuplicates(vector<int> &nums)
 {
     set<int> st;
     for (int i = 0; i < nums.size(); i++)
@@ -14,6 +14,19 @@ int removeDuplicates(vector<int> &nums)
         i++;
     }
     return st.size();
+}
+int Optimal_removeDuplicates(vector<int> &nums)
+{
+    int i = 0;
+    for (int j = 1; j < nums.size(); j++)
+    {
+        if (nums[i] != nums[j])
+        {
+            i++;
+            nums[i] = nums[j];
+        }
+    }
+    return i + 1;
 }
 int main()
 {
@@ -31,7 +44,8 @@ int main()
         {
             cin >> nums[i];
         }
-        int size = removeDuplicates(nums);
+        int size = Optimal_removeDuplicates(nums);
+        sort(nums.begin(), nums.begin() + size);
         cout << "Array after removing duplicates: ";
         for (int i = 0; i < size; i++)
         {

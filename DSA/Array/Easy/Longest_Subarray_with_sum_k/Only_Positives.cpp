@@ -24,24 +24,25 @@ int Better_Sub(vector<int> &arr, int k)
     int preSum = 0;
     int len = 0;
     unordered_map<int, int> hash;
-    for (int i = 0; i < arr.size(); i++)
-    {
-        preSum += arr[i];
         for (int i = 0; i < arr.size(); i++)
         {
+            preSum += arr[i];
             if (preSum == k)
             {
                 len = max(len, i + 1);
             }
-        }
-        int rem = sum - k;
+    
+        int rem = preSum - k;
         if (hash.find(rem) != hash.end())
         {
             len = max(len, i - hash[rem]);
         }
         hash[preSum] = i;
-    }
+        }
     return len;
+}
+int Optimal_Sub(vector<int> &arr, int k){
+    
 }
 int main()
 {
