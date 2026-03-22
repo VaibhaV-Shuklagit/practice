@@ -1,5 +1,5 @@
-#include<bits/stdc++.h>
-using namespace std;    
+#include <bits/stdc++.h>
+using namespace std;
 vector<int> BF_unionOfSortedArrays(vector<int> &arr1, vector<int> &arr2)
 {
     vector<int> nums;
@@ -13,7 +13,7 @@ vector<int> BF_unionOfSortedArrays(vector<int> &arr1, vector<int> &arr2)
     for (int i = 0; i < n2; i++)
     {
         st.insert(arr2[i]);
-    }   
+    }
     for (auto it : st)
     {
         nums.push_back(it);
@@ -28,7 +28,7 @@ vector<int> Optimal_unionOfSortedArrays(vector<int> &arr1, vector<int> &arr2)
     int i = 0, j = 0;
     while (i < n1 && j < n2)
     {
-        if (arr1[i] < arr2[j])
+        if (arr1[i] <= arr2[j])
         {
             if (nums.empty() || nums.back() != arr1[i])
             {
@@ -36,21 +36,12 @@ vector<int> Optimal_unionOfSortedArrays(vector<int> &arr1, vector<int> &arr2)
             }
             i++;
         }
-        else if (arr1[i] > arr2[j])
+        else 
         {
             if (nums.empty() || nums.back() != arr2[j])
             {
                 nums.push_back(arr2[j]);
             }
-            j++;
-        }
-        else
-        {
-            if (nums.empty() || nums.back() != arr1[i])
-            {
-                nums.push_back(arr1[i]);
-            }
-            i++;
             j++;
         }
     }

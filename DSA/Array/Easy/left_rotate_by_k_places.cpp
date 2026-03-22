@@ -1,14 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-void reverse(vector<int> &arr, int start, int end)
-{
-    while (start < end)
-    {
-        swap(arr[start], arr[end]);
-        start++;
-        end--;
-    }
-}
 void BF_LeftRotateByKPlaces(vector<int> &arr, int k)
 {
     k = k % arr.size();
@@ -30,9 +21,9 @@ void BF_LeftRotateByKPlaces(vector<int> &arr, int k)
 void Better_LeftRotateByKPlaces(vector<int> &arr, int k)
 {
     k = k % arr.size();
+    reverse(arr.begin(), arr.begin() + k);
+    reverse(arr.begin() + k, arr.end());
     reverse(arr.begin(), arr.end());
-    reverse(arr.begin(), arr.begin() + arr.size() - k);
-    reverse(arr.begin() + arr.size() - k, arr.end());
 }
 int main()
 {
@@ -52,7 +43,7 @@ int main()
         }
         cout << "Enter the No. of Places to Rotate : ";
         cin >> k;
-        BF_LeftRotateByKPlaces(arr, k);
+        Better_LeftRotateByKPlaces(arr, k);
         cout << "Array after Left Rotation by K Places: ";
         for (int i = 0; i < arr.size(); i++)
         {

@@ -3,7 +3,7 @@ using namespace std;
 vector<int> BF_Intersection(vector<int> &nums1, vector<int> &nums2)
 {
     vector<int> ans;
-    vector<int> vist;
+    vector<int> vist(nums2.size(),0);
     for (int i = 0; i < nums1.size(); i++)
     {
         for (int j = 0; j < nums2.size(); j++)
@@ -69,7 +69,7 @@ int main()
         {
             cin >> nums2[j];
         }
-        vector<int> ans = Optimal_Intersection(nums1, nums2);
+        vector<int> ans = BF_Intersection(nums1, nums2);
         cout << "Intersection of Two Sorted Arrays is : ";
         for (int i = 0; i < ans.size(); i++)
         {

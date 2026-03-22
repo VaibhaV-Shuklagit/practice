@@ -1,68 +1,17 @@
-#include <bits/stdc++.h>
-using namespace std;
-int BF_Sub(vector<int> &arr, int k)
-{
-    int sub = 0;
-    for (int i = 0; i < arr.size(); i++)
-    {
-        int sum = 0;
-        int cnt = 0;
-        for (int j = i; j < arr.size(); j++)
-        {
-            sum = sum + arr[j];
-            cnt++;
-            if (sum == k)
-            {
-                sub = max(cnt, sub);
-            }
+class Solution {
+public:
+    int maxProfit(vector<int>& prices){
+        int min = prices[0];
+        int maxprofit = 0 ;
+    for(int i = 1;i < prices.size(); i++){
+        if(min < prices[i]){
+            int profit =  prices[i] - min ;
+            maxprofit = max(profit,maxprofit);
+        }
+        else{
+            min = prices[i];
         }
     }
-    return sub;
-}
-int Better_Sub(vector<int> &arr, int k)
-{
-    int preSum = 0;
-    int len = 0;
-    unordered_map<int, int> hash;
-    for (int i = 0; i < arr.size(); i++)
-    {
-        preSum += arr[i];
-        for (int i = 0; i < arr.size(); i++)
-        {
-            if (preSum == k)
-            {
-                len = max(len, i + 1);
-            }
-        }
-        int rem = sum - k;
-        if (hash.find(rem) != hash.end())
-        {
-            len = max(len, i - hash[rem]);
-        }
-        hash[preSum] = i;
+    return maxprofit ;
     }
-    return len;
-}
-int main()
-{
-    int t;
-    cout << "Test Cases: ";
-    cin >> t;
-    while (t--)
-    {
-        int n;
-        cout << "Enter the No. of Elements : ";
-        cin >> n;
-        vector<int> arr(n);
-        cout << "Enter the Elements in the Array : ";
-        for (int j = 0; j < n; j++)
-        {
-            cin >> arr[j];
-        }
-        int k;
-        cout << "Target : ";
-        cin >> k;
-        cout << "The Length of the Longest Subarray with the Sum of K is " << Better_Sub(arr, k) << endl;
-    }
-    return 0;
-}
+};

@@ -1,46 +1,38 @@
-#include <stdio.h>
-#include <stdlib.h>
-void readarray(int arr[], int n)
-{
-    int i;
-    for (int i = 0; i < n; i++)
+#include<stdio.h>
+#include<stdlib.h>
+#define Max 5 
+int top = -1;
+void push(int arr[] ,int x)
+{   
+    if(top >= Max - 1)
     {
-        printf("arr[%d] = ", i);
-        scanf("%d", &arr[i]);
+        printf("Stack Overflow !!");
+        return;
+    }
+    else
+    {
+        arr[++top] = x ;
     }
 }
-void display(int arr[], int n)
-{
-    for (int i = 0; i < n; i++)
+void pop(int arr[]){
+    if(top == -1)
     {
-        printf("%d ", arr[i]);
+        printf("Stack Underflow !!");
+        return ;
     }
-}
-int sum(int arr[], int n)
-{
-    int sum = 0;
-    for (int i = 0; i < n; i++)
+    else
     {
-        sum = sum + arr[i];
+        top -- ;
     }
-    return sum;
 }
 int main()
 {
-    int test;
-    printf("test cases = ");
-    scanf("%d", &test);
-    for (int i = 1; i <= test; i++)
+    int arr[Max];
+    for(int i = 0 ; i < Max ; i++)
     {
-        int n;
-        printf("size = ");
-        scanf("%d", &n);
-        int arr[n];
-        // int* arr;
-        // arr = (int*)malloc(n*4);
-        readarray(arr, n);
-        display(arr, n);
-        printf("sum = %d\n", sum(arr, n));
+    push(arr,i+5);
     }
+    pop(arr);
+    printf("%d",arr[top]);
     return 0;
 }
