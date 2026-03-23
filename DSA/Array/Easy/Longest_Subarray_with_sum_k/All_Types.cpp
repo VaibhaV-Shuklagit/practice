@@ -8,13 +8,10 @@ int Most_optimal_Sub(vector<int> &arr, int k)
     for (int i = 0; i < arr.size(); i++)
     {
         preSum += arr[i];
-        for (int i = 0; i < arr.size(); i++)
-        {
-            if (preSum == k)
+        if (preSum == k)
             {
-                len = max(len, i + 1);
+        len = max(len, i + 1);
             }
-        }
         int rem = preSum - k;
         if (hash.find(rem) != hash.end())
         {
