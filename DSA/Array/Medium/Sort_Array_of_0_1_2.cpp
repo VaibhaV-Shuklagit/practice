@@ -28,8 +28,8 @@ vector<int> Optimal_Sort_Array(vector<int> &arr)
     // Things to Remember in Dutch National Flag Algo
     // [0,low-1] --> 0
     // [low,mid-1] --> 1
-    //[high +1,n-1] --> 2
-    // [mid,high -1] --> Unsorted mixed order pf 0,1 & 2
+    //[high + 1,n-1] --> 2
+    // [mid,high - 1] --> Unsorted mixed order of 0,1 & 2
     int low = 0, mid = 0, high = n - 1;
     while (mid <= high)
     {
