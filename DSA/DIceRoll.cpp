@@ -5,13 +5,10 @@ int Dice_Roll(int arr[], int n)
     int cnt = 0;
     for (int i = 0; i < n - 1; i++)
     {
-        if (arr[i] + arr[i + 1] == 7)
+        if (arr[i] + arr[i + 1] == 7 || arr[i] == arr[i+1])
         {
             cnt++;
-        }
-        else if (arr[i] == arr[i + 1])
-        {
-            cnt++;
+            i++;
         }
     }
     return cnt;

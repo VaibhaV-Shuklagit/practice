@@ -1,27 +1,56 @@
 #include <bits/stdc++.h>
 using namespace std;
-void Heapify(int arr[], int n)
+void Heapify(vector<int> &arr)
 {
-    bool flag = false;
-    for (int i = 0; i < n / 2; i++)
+    unordered_map<long, long> mpp;
+    int i = 1;
+    for (auto it : arr)
     {
-        if (arr[i] > arr[i + 1])
+        mpp[i++] = it;
+    }
+    bool flag = false;
+    for (int j = 1; j <= arr.size(); j++)
+    {
+        if ((1 <= j) && (j <= arr.size() / 2))
         {
-            if (arr[2 * (i+1)] < arr[i + 1])
-            {       
-                flag = true;
-                swap(arr[2*(i+1)],arr[i+1]);
+            if (mpp[j] > mpp[j + 1])
+            {
+                if (mpp[2 * j] <= mpp[j + 1])
+                {
+                    swap(mpp[2 * j], mpp[j + 1]);
+                    flag = true;
+                }
+                else
+                {
+                    flag = false;
+                    break;
+                }
             }
             else
+                flag = true;
+        }
+        else
+        {
+            if (mpp[j] > mpp[j + 1])
+            {
                 flag = false;
+                break;
+            }
+            else
+                flag = true;
         }
     }
-    if (flag == true)
-    {
+    if (arr.size() == 1)
         cout << "YES" << endl;
-    }
     else
-        cout << "NO" << endl;
+    {
+        if (flag == true)
+        {
+            cout << "YES" << endl;
+        }
+        else
+            cout << "NO" << endl;
+    }
 }
 int main()
 {
@@ -31,11 +60,11 @@ int main()
     {
         int n;
         cin >> n;
-        int arr[n];
+        vector<int> arr(n);
         for (int i = 0; i < n; i++)
         {
             cin >> arr[i];
         }
-        Heapify(arr, n);
+        Heapify(arr);
     }
 }
