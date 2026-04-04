@@ -17,7 +17,7 @@ void Heapify(vector<int> &arr)
             {
                 if (mpp[2 * j] <= mpp[j + 1])
                 {
-                    swap(mpp[2 * j], mpp[j + 1]);
+                    swap(mpp[2 * j], mpp[j]);
                     flag = true;
                 }
                 else
@@ -68,3 +68,4 @@ int main()
         Heapify(arr);
     }
 }
+

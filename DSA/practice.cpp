@@ -1,68 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
-void setZeroes(vector<vector<int>> &matrix)
+int optimal(vector<int> &nums)
 {
-    int row = matrix.size();
-    int column = matrix[0].size();
-    map<int,pair<int,int> hash;
-    int num = 0;
-    for (int i = 0; i < row; i++)
+    int cnt = 0;
+    int el;
+    for (int i = 0; i < nums.size(); i++)
     {
-        for (int j = 0; j < column; j++)
-        {
-            if (matrix[i][j] == 0)
-            {
-                hash[++num] = {i,j};
-            }
-        }
+        if (cnt == 0)
+            el = nums[i];
+        if (nums[i] == el)
+            cnt++;
+        else
+            cnt--;
     }
-    for (auto it : hash)
-    {
-        int k = 0;
-        while (k < row)
-        {
-            matrix[k][it.second.second] = 0;
-        }
-    }
-    for (auto it2 : hash)
-    {
-        int k = 0;
-        while (k < column)
-        {
-            matrix[it2.second.first][k] = 0;
-        }
-    }
+    return el;
 }
 int main()
 {
     int t;
-    cout << "Enter the No. of Test Cases : ";
+    cout << "Enter the Test Cases : ";
     cin >> t;
     while (t--)
     {
-        int row;
-        cout << "Enter the Number of Rows : ";
-        cin >> row;
-        int column;
-        cout << "Enter the Numebr of Columns : ";
-        cin >> column;
-        vector<vector<int>> matrix(row, vector<int>(column));
-        for (int i = 0; i < row; i++)
+        int n;
+        cout << "Enter the No. of Elements : ";
+        cin >> n;
+        vector<int> nums(n);
+        cout << "Enter the Elements in the Array : ";
+        for (int i = 0; i < nums.size(); i++)
         {
-            for (int j = 0; j < column; j++)
-            {
-                cin >> matrix[i][j];
-            }
+            cin >> nums[i];
         }
-        setZeroes(matrix);
-        for (int i = 0; i < row; i++)
-        {
-            for (int j = 0; j < column; j++)
-            {
-                cout << matrix[i][j] << " ";
-            }
-            cout << endl;
-        }
+        cout << "The Majority Element in the Array is " << optimal(nums) << endl;
     }
-    return 0;
 }
