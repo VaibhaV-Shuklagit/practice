@@ -22,6 +22,28 @@ vector<vector<int>> BF_3_Sum(int n, vector<int> &nums)
     return ans;
 } // TC --> O(N3) + O(NLogN)
 // SC --> 2 X O(No. of Triplets)
+vector<vector<int>> Better_3_Sum(int n, vector<int> &nums)
+{
+    set<vector<int>> st;
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < n; i++)
+    {
+        set<int> hashset;
+        for (int j = i + 1; j < n; j++)
+        {
+            int third = -(nums[i] + nums[j]);
+            if (hashset.find(third) != hashset.end())
+            {
+                vector<int> temp = {nums[i], third, nums[j]};
+                st.insert(temp);
+            }
+            hashset.insert(nums[j]);
+        }
+    }
+    vector<vector<int>> ans(st.begin(), st.end());
+    return ans;
+} // TC --> O(N2Log(M)) [M is the varying size of hashset]
+// SC --> O(N) + 2(O(No. of Triplets))
 vector<vector<int>> Optimal_3_Sum(int n, vector<int> &nums)
 {
     vector<vector<int>> ans;
@@ -58,7 +80,7 @@ vector<vector<int>> Optimal_3_Sum(int n, vector<int> &nums)
     }
     return ans;
 } // TC --> O(N2) + O(NLogN)
-// SC --> O()
+// SC --> O(No. of Triplets) [Vector of vector used for returning the ans,It's not the extra Space]
 int main()
 {
     int t;
