@@ -9,7 +9,7 @@ function sayMyName(){
     console.log("v");
 } // In Js we don't have to mention the return type
 
-sayMyName()
+sayMyName() // calling the function
 
 // function addTwoNumbers(number1, number2){
 
@@ -50,7 +50,7 @@ function calculateCartPrice(val1, val2, ...num1){
 // console.log(calculateCartPrice(200, 400, 500, 2000))
 
 const user = {
-    username: "hitesh",
+    username: "Vaibhav",
     prices: 199
 }
 
@@ -58,11 +58,11 @@ function handleObject(anyobject){
     console.log(`Username is ${anyobject.username} and price is ${anyobject.price}`);
 }
 
-// handleObject(user)
+// handleObject(user) // calling the function
 handleObject({
     username: "sam",
     price: 399
-})
+}) // calling the function
 
 const myNewArray = [200, 400, 100, 600]
 
@@ -72,3 +72,4 @@ function returnSecondValue(getArray){
 
 // console.log(returnSecondValue(myNewArray));
 console.log(returnSecondValue([200, 400, 500, 1000]));
+

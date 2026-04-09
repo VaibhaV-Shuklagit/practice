@@ -15,7 +15,7 @@ vector<vector<int>> BF_4_Sum(int target, vector<int> &nums)
                 {
                     long long sum = nums[i] + nums[j]; // we are doing this to avoid integer overflow.
                     sum += nums[k];                    // we can do this through another method as well :
-                    sum += nums[l];                    // long long sum = long long nums[i] + nums[j] + nums[k] + nums[l]
+                    sum += nums[l];                    // long long sum = (long long)nums[i] + nums[j] + nums[k] + nums[l]
                     if (sum == target)
                     {
                         vector<int> temp = {nums[i], nums[j], nums[k], nums[l]};
