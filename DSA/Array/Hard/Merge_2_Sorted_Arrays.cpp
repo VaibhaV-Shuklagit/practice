@@ -139,6 +139,6 @@ int main()
         }
     }
 }
-// Test Case: nums1 = {1 3 5 7} nums2 ={0 2 6 8 9}
+// Test Case: nums1 = {1 3 5 7} nums2 = {0 2 6 8 9}
 // Output: 0 1 2 3 
 //         5 6 7 8 9

@@ -11,34 +11,7 @@ void Heapify(vector<int> &arr)
     bool flag = false;
     for (int j = 1; j <= arr.size(); j++)
     {
-        if ((1 <= j) && (j <= arr.size() / 2))
-        {
-            if (mpp[j] > mpp[j + 1])
-            {
-                if (mpp[2 * j] <= mpp[j + 1])
-                {
-                    swap(mpp[2 * j], mpp[j]);
-                    flag = true;
-                }
-                else
-                {
-                    flag = false;
-                    break;
-                }
-            }
-            else
-                flag = true;
-        }
-        else
-        {
-            if (mpp[j] > mpp[j + 1])
-            {
-                flag = false;
-                break;
-            }
-            else
-                flag = true;
-        }
+        
     }
     if (arr.size() == 1)
         cout << "YES" << endl;
