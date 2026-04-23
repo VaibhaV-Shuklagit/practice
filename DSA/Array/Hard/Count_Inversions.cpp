@@ -2,15 +2,17 @@
 using namespace std;
 int BF_Count_Inversion(vector<int> &nums)
 {
- int cnt = 0;
- for(int i = 0; i < n; i++)
- {
-    for(int j = i + 1; j < n; j++)
+    int n = nums.size();
+    int cnt = 0;
+    for (int i = 0; i < n; i++)
     {
-        if(nums[i]>nums[j]) cnt+=;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (nums[i] > nums[j])
+                cnt++;
+        }
     }
- }  
- return cnt;
+    return cnt;
 } // TC --> O(N2)
 // SC --> O(1)
 int Sort_Arrays(vector<int> &nums, int low, int mid, int high)
@@ -37,7 +39,6 @@ int Sort_Arrays(vector<int> &nums, int low, int mid, int high)
     {
         temp.push_back(nums[left]);
         left++;
-        cnt += (right - mid - 1);
     }
     while (right <= high)
     {
@@ -52,15 +53,18 @@ int Sort_Arrays(vector<int> &nums, int low, int mid, int high)
 }
 int Optimal_Count_Inversion(vector<int> &nums, int low, int high)
 {
-    if (low == high)
-        return;
+    int cnt = 0;
     if (low >= high)
         return cnt;
     int mid = (low + high) / 2;
-    cnt += Count_Inversion(nums, low, mid);
-    cnt += Count_Inversion(nums, mid + 1, high);
+    cnt += Optimal_Count_Inversion(nums, low, mid);
+    cnt += Optimal_Count_Inversion(nums, mid + 1, high);
     cnt += Sort_Arrays(nums, low, mid, high);
     return cnt;
+}
+int numberofinvertionsS(vector<int> &nums, int n)
+{
+    return Optimal_Count_Inversion(nums, 0, n - 1);
 } // TC --> O(NlogN)
 // SC --> O(N)
 int main()
@@ -76,6 +80,6 @@ int main()
         {
             cin >> nums[i];
         }
-        cout << Optimal_Count_Inversion(nums, 0, n - 1);
+        cout << numberofinvertionsS(nums, n);
     }
 }

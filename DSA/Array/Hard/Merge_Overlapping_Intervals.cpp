@@ -9,7 +9,7 @@ vector<vector<int>> BF_Merge(vector<vector<int>> &matrix)
     {
         int start = matirx[i][0];
         int end = matrix[i][1];
-        if (!ans.empty() || ans.back()[1] >= end)
+        if (!ans.empty() && ans.back()[1] >= end)
         {
             continue;
         }

@@ -70,7 +70,7 @@ void Optimal2_Merge_Arrays(vector<int> &nums1, vector<int> &nums2)
     int n = nums1.size();
     int m = nums2.size();
     int len = n + m;
-    int gap = ((len / 2) + (len % 2)); // Method for finding Cieling of a divison [[m/n]+[m%n]
+    int gap = ((len / 2) + (len % 2)); // Method for finding Cieling of a divison ((a / b) + ((a % b) != 0))
     while (gap > 0)
     {
         int left = 0;
