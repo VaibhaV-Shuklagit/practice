@@ -1,28 +1,26 @@
-// const coding = ["js", "ruby", "java", "python", "cpp"]
+const coding = ["js", "ruby", "java", "python", "cpp"]
 
 
-// const values = coding.forEach( (item) => {
-//     //console.log(item);
-//     return item
-// } )
+const values = coding.forEach( (item) => { // forEach loops don't return anything 
+    console.log(item);
+    return item
+} )
 
-// console.log(values);
+console.log(values); // that's why it will show undefined
 
 const myNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-// const newNums = myNums.filter( (num) => {
-//     return num > 4
-// } )
+// const newNums = myNums.filter( (num) => num > 4)// filter function can return the values  
+// Here we used Implicit return so It will return directly the values
+const newNums = []
 
-// const newNums = []
+myNums.forEach( (num) => { // this is how we can use for each loop to return values Indirectly 
+    if (num > 4) { // it is not returning anything but we used more functions to store the values in an array then using that array for further use
+        newNums.push(num)
+    }
+} )
 
-// myNums.forEach( (num) => {
-//     if (num > 4) {
-//         newNums.push(num)
-//     }
-// } )
-
-// console.log(newNums);
+console.log(newNums);
 
 
 const books = [
@@ -39,7 +37,7 @@ const books = [
 
   let userBooks = books.filter( (bk) => bk.genre === 'History')
 
-  userBooks = books.filter( (bk) => { 
+  userBooks = books.filter( (bk,idx,arr) => { 
     return bk.publish >= 1995 && bk.genre === "History"
 })
   console.log(userBooks);

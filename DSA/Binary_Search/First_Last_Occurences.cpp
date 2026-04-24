@@ -89,7 +89,7 @@ vector<int> LB_UB_Method(vector<int> vector<int> nums, int target)
         return {-1, -1};
     int LB = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
     int UB = upper_bound(nums.begin(), nums.end(), target) - nums.begin();
-    if (LB == n || nums[lb] != k)
+    if (LB == n || nums[LB] != target)
         return {-1, -1};
     return {LB, UB - 1};
 }

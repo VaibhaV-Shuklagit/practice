@@ -37,7 +37,7 @@ const chai =  () => {        // Arrow Function
 
 // const addTwo = (num1, num2) => {
 //     return num1 + num2
-// } // using curly braces explicit return works so to get a value from a function we have to return a value from that value
+// } // using curly braces explicit return works so to get a value from a function we have to return a value 
 
 // const addTwo = (num1, num2) =>  num1 + num2 // this is the type of implicit return where we don't have to write return because we just have to write one line
 
