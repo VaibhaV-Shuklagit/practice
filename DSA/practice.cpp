@@ -1,59 +1,49 @@
-#include <stdio.h>
-void swap(int *p, int *q)
-{
-    int temp = *p;
-    *p = *q;
-    *q = temp;
-}
-int partition(int arr[], int low, int high)
-{
-    int pivot = arr[low];
-    int l = low;
-    int r = high;
-    while (l <= r)
+#include <bits/stdc++.h>
+using namespace std;
+int avg(vector<int> nums,int high)
+{   
+    long long avg = 0;
+    for(int i = 0; i <= high; i++)
     {
-        while (arr[l] <= pivot && l < high)
-        {
-            l++;
-        }
-        while (arr[r] > pivot && r > low)
-        {
-            r--;
-        }
-        if (l < r)
-        {
-            swap(&arr[l], &arr[r]);
-        }
+        avg+=nums[i];
     }
-    swap(&arr[r], &arr[low]);
-    return r;
+    return (int)avg/(high + 1);
 }
-void Quick_Sort(int arr[], int low, int high)
+void CakeLeveling(vector<int> nums,int n)
+{ 
+vector<int> ans;
+ans.push_back(nums[0]);
+int mini = nums[0];
+int prevavg = nums[0]; 
+for(int i = 1; i < n ;i++)
 {
-    if (low >= high)
-        return;
-    int part = partition(arr, low, high);
-    Quick_Sort(arr, low, part - 1);
-    Quick_Sort(arr, part + 1, high);
+if(nums[i] < mini) 
+{
+prevavg = avg(nums,i);
+ans.push_back(prevavg);
+mini = nums[i];
+}
+else ans.push_back(prevavg);
+}
+for(int i = 0; i < ans.size() ;i++)
+{
+cout << ans[i] << " ";
+}
+cout << endl;
 }
 int main()
 {
     int t;
-    scanf("%d",&t);
+    cin >> t;
     while (t--)
-    {
+    {   
         int n;
-        scanf("%d", &n);
-        int arr[n];
-        for (int i = 0; i < n; i++)
+        cin >> n;
+        vector<int> nums(n);
+        for(int i = 0; i < n; i++)
         {
-            scanf("%d ", &arr[i]);
+            cin >> nums[i];
         }
-        printf("\n");
-        Quick_Sort(arr, 0, n - 1);
-        for (int i = 0; i < n; i++)
-        {
-            printf("%d ", arr[i]);
-        }
+        CakeLeveling(nums,n);
     }
 }
