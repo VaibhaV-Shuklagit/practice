@@ -41,7 +41,10 @@ int Koko_Optimal(vector<int> nums, int n, int h)
 } // TC --> O(Nlog(maxelement))
 // SC --> O(1)
 int main()
-{
+{   
+     ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
     int t;
     cin >> t;
     while (t--)
@@ -58,3 +61,6 @@ int main()
         cout << Koko_Optimal(nums, n, h) << endl;
     }
 }
+// Similar Questions: 1. Find the Smallest Divisor
+// 2. Cpacity to Ship Packages Within D Days
+// 3. Minimum days to make M bouquets

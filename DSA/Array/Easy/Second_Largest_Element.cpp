@@ -23,7 +23,7 @@ int Optimal_secondLargest(int arr[], int n)
             secondLargest = largest;
             largest = arr[i];
         }
-        else if (arr[i] != largest && (secondLargest == -1 || arr[i] > secondLargest))
+        else if (num[i] > secondLargest && num[i] != largest))
         {
             secondLargest = arr[i];
         }
