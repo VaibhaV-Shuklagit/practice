@@ -42,7 +42,7 @@ int Koko_Optimal(vector<int> nums, int n, int h)
 // SC --> O(1)
 int main()
 {   
-     ios_base::sync_with_stdio(false);
+    ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
     int t;
@@ -62,5 +62,5 @@ int main()
     }
 }
 // Similar Questions: 1. Find the Smallest Divisor
-// 2. Cpacity to Ship Packages Within D Days
+// 2. Capacity to Ship Packages Within D Days
 // 3. Minimum days to make M bouquets
