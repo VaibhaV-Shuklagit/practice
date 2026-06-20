@@ -1,39 +1,39 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-using ll = long long;
 
-void OmskProgrammers(ll a, ll b, ll x)
+int findContentChildren(vector<int> &g, vector<int> &s, int n1, int n2)
 {
-    if (a == b)
-    {
-        cout << "0\n";
-        return;
-    }
-    ll cnt = 0;
-    ll maxop = LLONG_MAX;
-    while (a != b)
-    {
-        maxop = min(abs(a - b) + cnt, maxop);
-        if (a > b)
-            a = a / x;
-        else
-            b = b / x;
-        cnt++;
-    }
-    maxop = min(maxop,cnt);
-    cout << maxop << "\n";
+        sort(g.begin(),g.end());
+        sort(s.begin(),s.end());
+        int left = 0;
+        int right = 0;
+        int cnt = 0;
+        while(left < g.size() && right < s.size())
+        {
+            if(s[right] >= g[left]){
+                cnt++;
+                left++;
+            }
+            right++;
+        }
+        return cnt;
 }
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    ll t;
+    int t;
     cin >> t;
     while (t--)
     {
-        ll a, b, x;
-        cin >> a >> b >> x;
-        OmskProgrammers(a, b, x);
+        int n1, n2;
+        cin >> n1 >> n2;
+        vector<int> greedy(n1);
+        vector<int> cookies(n2);
+        for(int i = 0; i < n1; i++) cin >> greedy[i];
+        for(int i = 0; i < n2; i++) cin >> cookies[i];
+        cout << findContentChildren(greedy, cookies, n1, n2) << "\n";
     }
 }
