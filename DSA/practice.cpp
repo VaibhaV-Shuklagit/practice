@@ -1,22 +1,20 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int findContentChildren(vector<int> &g, vector<int> &s, int n1, int n2)
+int MainakandArray(vector<int> &nums, int n)
 {
-        sort(g.begin(),g.end());
-        sort(s.begin(),s.end());
-        int left = 0;
-        int right = 0;
-        int cnt = 0;
-        while(left < g.size() && right < s.size())
+    int largest = *max_element(nums.begin(),nums.end());
+    int smallest = *min_element(nums.begin(),nums.end());
+    if(nums[n - 1] == largest) return largest - smallest;
+    else if(nums[0] == smallest) return largest - smallest;
+    else{
+        int maxdiff = INT_MIN;
+        for(int i = 0; i < n - 1; i++)
         {
-            if(s[right] >= g[left]){
-                cnt++;
-                left++;
-            }
-            right++;
+            maxdiff = max((nums[i] - nums[i + 1]),maxdiff);
         }
-        return cnt;
+        return maxdiff;
+    }
 }
 
 int main()
@@ -28,12 +26,10 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n1, n2;
-        cin >> n1 >> n2;
-        vector<int> greedy(n1);
-        vector<int> cookies(n2);
-        for(int i = 0; i < n1; i++) cin >> greedy[i];
-        for(int i = 0; i < n2; i++) cin >> cookies[i];
-        cout << findContentChildren(greedy, cookies, n1, n2) << "\n";
+        int n;
+        cin >> n;
+        vector<int> nums(n);
+        for(int i = 0; i < n; i++) cin >> nums[i];
+        cout << MainakandArray(nums, n) << "\n";
     }
 }
