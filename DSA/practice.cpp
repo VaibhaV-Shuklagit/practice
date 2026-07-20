@@ -1,20 +1,38 @@
 #include<bits/stdc++.h>
 using namespace std;
-
-int MainakandArray(vector<int> &nums, int n)
+using ll = long long; 
+void AvtoBus(ll n)
 {
-    int largest = *max_element(nums.begin(),nums.end());
-    int smallest = *min_element(nums.begin(),nums.end());
-    if(nums[n - 1] == largest) return largest - smallest;
-    else if(nums[0] == smallest) return largest - smallest;
-    else{
-        int maxdiff = INT_MIN;
-        for(int i = 0; i < n - 1; i++)
-        {
-            maxdiff = max((nums[i] - nums[i + 1]),maxdiff);
-        }
-        return maxdiff;
-    }
+ll maxbus = LLONG_MIN;
+ll minbus = LLONG_MAX;
+if(n % 2 != 0)
+{
+    cout << "-1\n";
+    return;
+}
+if(n == 2) {
+    cout << "-1\n";
+return;
+}
+if(n % 4 == 0)
+{
+maxbus = max(n / 4, maxbus);
+minbus = min(n / 4, minbus);
+}
+if(n % 6 == 0)
+{
+    maxbus = max(n / 6, maxbus);
+    minbus = min(n / 6, minbus);
+} 
+if(n > 6){
+    maxbus = max(n / 6 + 1, maxbus);
+    minbus = min(n / 6 + 1, minbus);
+}
+if(n > 4){
+    maxbus = max(n / 4, maxbus);
+    minbus = min(n / 4, minbus);
+}
+cout << minbus << " " << maxbus << "\n";
 }
 
 int main()
@@ -26,10 +44,10 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n;
+        ll n;
         cin >> n;
-        vector<int> nums(n);
-        for(int i = 0; i < n; i++) cin >> nums[i];
-        cout << MainakandArray(nums, n) << "\n";
+        // vector<int> nums(n);
+        // for(int i = 0; i < n; i++) cin >> nums[i];
+        AvtoBus(n);
     }
 }
