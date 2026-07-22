@@ -1,38 +1,27 @@
 #include<bits/stdc++.h>
 using namespace std;
 using ll = long long; 
-void AvtoBus(ll n)
+void MakeItIncreasing(vector<ll>& nums)
 {
-ll maxbus = LLONG_MIN;
-ll minbus = LLONG_MAX;
-if(n % 2 != 0)
+ll n = nums.size();
+ll cnt = 0;
+for(ll i = n - 2; i >= 0; i--)
 {
-    cout << "-1\n";
-    return;
+    if(nums[i] >= nums[i + 1])
+    {
+        while(nums[i] >= nums[i + 1])
+        {
+            nums[i] = nums[i]/2;
+            cnt++;
+        }
+    }
+    if(i > 0 && nums[i + 1]) 
+    {
+        cout << "-1\n";
+        return;
+    } 
 }
-if(n == 2) {
-    cout << "-1\n";
-return;
-}
-if(n % 4 == 0)
-{
-maxbus = max(n / 4, maxbus);
-minbus = min(n / 4, minbus);
-}
-if(n % 6 == 0)
-{
-    maxbus = max(n / 6, maxbus);
-    minbus = min(n / 6, minbus);
-} 
-if(n > 6){
-    maxbus = max(n / 6 + 1, maxbus);
-    minbus = min(n / 6 + 1, minbus);
-}
-if(n > 4){
-    maxbus = max(n / 4, maxbus);
-    minbus = min(n / 4, minbus);
-}
-cout << minbus << " " << maxbus << "\n";
+cout << cnt << "\n";
 }
 
 int main()
@@ -40,14 +29,14 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int t;
+    ll t;
     cin >> t;
     while (t--)
     {
         ll n;
         cin >> n;
-        // vector<int> nums(n);
-        // for(int i = 0; i < n; i++) cin >> nums[i];
-        AvtoBus(n);
+        vector<ll> nums(n);
+        for(ll i = 0; i < n; i++) cin >> nums[i];
+        MakeItIncreasing(nums);
     }
 }
