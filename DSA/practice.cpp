@@ -1,27 +1,27 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-using ll = long long; 
-void MakeItIncreasing(vector<ll>& nums)
-{
-ll n = nums.size();
-ll cnt = 0;
-for(ll i = n - 2; i >= 0; i--)
-{
-    if(nums[i] >= nums[i + 1])
-    {
-        while(nums[i] >= nums[i + 1])
-        {
-            nums[i] = nums[i]/2;
-            cnt++;
-        }
-    }
-    if(i > 0 && nums[i + 1]) 
-    {
-        cout << "-1\n";
-        return;
-    } 
+using ll = long long;
+bool comp(const pair<ll, ll> &a, const pair<ll, ll> &b) {
+    return a.second < b.second;
 }
-cout << cnt << "\n";
+ll ArrayCloningTechnique(vector<ll> &nums)
+{
+    ll n = nums.size();
+    ll maxele = *max_element(nums.begin(), nums.end());
+    ll minele = *min_element(nums.begin(), nums.end());
+    if (minele == maxele)
+        return 0;
+    else
+    {
+        unordered_map<ll, ll> hash;
+        for (int i = 0; i < n; i++)
+        {
+            hash[nums[i]]++;
+        }
+        auto it = max_element(hash.begin(), hash.end(), comp);
+        ll maxele2 = it->second;
+        return ceil((float)(n - maxele2) / (float)maxele2) + n - maxele2;
+    }
 }
 
 int main()
@@ -36,7 +36,8 @@ int main()
         ll n;
         cin >> n;
         vector<ll> nums(n);
-        for(ll i = 0; i < n; i++) cin >> nums[i];
-        MakeItIncreasing(nums);
+        for (int i = 0; i < n; i++)
+            cin >> nums[i];
+        cout << ArrayCloningTechnique(nums) << "\n";
     }
 }
