@@ -26,7 +26,7 @@ bool searchValue(Node *head, int key)
         // Move to next node
         current = current->next;
     }
-    
+
     return false;
 }
 

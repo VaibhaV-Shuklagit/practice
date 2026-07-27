@@ -20,7 +20,7 @@ ll ArrayCloningTechnique(vector<ll> &nums)
         }
         auto it = max_element(hash.begin(), hash.end(), comp);
         ll maxele2 = it->second;
-        return ceil((float)(n - maxele2) / (float)maxele2) + n - maxele2;
+        
     }
 }
 
