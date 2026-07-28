@@ -1,27 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-bool comp(const pair<ll, ll> &a, const pair<ll, ll> &b) {
-    return a.second < b.second;
-}
-ll ArrayCloningTechnique(vector<ll> &nums)
+void MakeAP(ll a, ll b, ll c)
 {
-    ll n = nums.size();
-    ll maxele = *max_element(nums.begin(), nums.end());
-    ll minele = *min_element(nums.begin(), nums.end());
-    if (minele == maxele)
-        return 0;
-    else
-    {
-        unordered_map<ll, ll> hash;
-        for (int i = 0; i < n; i++)
-        {
-            hash[nums[i]]++;
-        }
-        auto it = max_element(hash.begin(), hash.end(), comp);
-        ll maxele2 = it->second;
-        
+   if(a == b && c == b)
+   {
+    cout << "Yes\n";
+    return;
+   }
+   else if(b - a == c - b)
+   {
+        cout << "Yes\n";
+        return;
+   }
+   else if(a == 1 && c == 1){
+    cout << "Yes\n";
+    return;
+   }
+   else
+   {
+    ll x = (2*b - c)/a;
+    if(x > 0 && 2*b == (c + a*x)){
+        cout << "Yes\n";
+        return;
     }
+    x = (c + a)/(2*b);
+    if(x > 0 && 2*b*x == (c + a)){
+        cout << "Yes\n";
+        return;
+    }
+    x = (2*b - a)/c;
+    if(x > 0 && 2*b == (c*x + a)){
+        cout << "Yes\n";
+        return;
+    }
+    cout << "No\n";
+   }
 }
 
 int main()
@@ -32,12 +46,9 @@ int main()
     ll t;
     cin >> t;
     while (t--)
-    {
-        ll n;
-        cin >> n;
-        vector<ll> nums(n);
-        for (int i = 0; i < n; i++)
-            cin >> nums[i];
-        cout << ArrayCloningTechnique(nums) << "\n";
+    {   
+        ll a, b, c;
+        cin >> a >> b >> c;
+        MakeAP(a, b, c);
     }
 }
