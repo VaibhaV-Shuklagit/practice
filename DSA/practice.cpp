@@ -1,41 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-void MakeAP(ll a, ll b, ll c)
+
+void ExcitingBets(ll x, ll y)
 {
-   if(a == b && c == b)
-   {
-    cout << "Yes\n";
-    return;
-   }
-   else if(b - a == c - b)
-   {
-        cout << "Yes\n";
-        return;
-   }
-   else if(a == 1 && c == 1){
-    cout << "Yes\n";
-    return;
-   }
-   else
-   {
-    ll x = (2*b - c)/a;
-    if(x > 0 && 2*b == (c + a*x)){
-        cout << "Yes\n";
-        return;
+    if (x == y)
+        cout << "0 0\n";
+    else if (abs(x - y) == 1)
+        cout << "1 0\n";
+    else
+    {
+        ll div = abs(x - y);
+        if (x % div == 0 && y % div == 0)
+            cout << div << " 0\n";
+        else
+        {
+            ll cnt1 = div - (x % div);
+            ll cnt2 = (x % div);
+            cout << div << " " << min(cnt1, cnt2) << "\n";
+        }
     }
-    x = (c + a)/(2*b);
-    if(x > 0 && 2*b*x == (c + a)){
-        cout << "Yes\n";
-        return;
-    }
-    x = (2*b - a)/c;
-    if(x > 0 && 2*b == (c*x + a)){
-        cout << "Yes\n";
-        return;
-    }
-    cout << "No\n";
-   }
 }
 
 int main()
@@ -46,9 +30,9 @@ int main()
     ll t;
     cin >> t;
     while (t--)
-    {   
-        ll a, b, c;
-        cin >> a >> b >> c;
-        MakeAP(a, b, c);
+    {
+        ll x, y;
+        cin >> x >> y;
+        ExcitingBets(x, y);
     }
 }
