@@ -2,26 +2,38 @@
 using namespace std;
 using ll = long long;
 
-void ExcitingBets(ll x, ll y)
+ll Evanescent(string &s)
 {
-    if (x == y)
-        cout << "0 0\n";
-    else if (abs(x - y) == 1)
-        cout << "1 0\n";
-    else
+    ll n = s.size();
+    int len = 1;
+    int cnt = 1;
+    if(n == 3)
     {
-        ll div = abs(x - y);
-        if (x % div == 0 && y % div == 0)
-            cout << div << " 0\n";
-        else
+        if(s[0] == s[2]) return 1;
+        else return 2;
+    }
+    else
+    {   
+        int cnt = 1;
+        int milgya = 0;
+        for(int i = 1; i < n; i++)
         {
-            ll cnt1 = div - (x % div);
-            ll cnt2 = (x % div);
-            cout << div << " " << min(cnt1, cnt2) << "\n";
+            if(s[i] != s[i - 1]) 
+            {
+                cnt++;
+            }
+            else{
+                
+            }
+            if(i < n - 2 && s[i - 1] == s[i + 1]) milgya++;
+        }
+        if(n == cnt) return cnt - 1;
+        else{
+            if(milgya >= 1) return cnt;
+            else return cnt - 1;
         }
     }
 }
-
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -31,8 +43,10 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll x, y;
-        cin >> x >> y;
-        ExcitingBets(x, y);
+        ll n;
+        cin >> n;
+        string s;
+        cin >> s;
+        cout << Evanescent(s) << "\n";
     }
 }
