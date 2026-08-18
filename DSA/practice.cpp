@@ -5,34 +5,30 @@ using ll = long long;
 ll Evanescent(string &s)
 {
     ll n = s.size();
-    int len = 1;
-    int cnt = 1;
-    if(n == 3)
-    {
-        if(s[0] == s[2]) return 1;
-        else return 2;
-    }
-    else
+    ll cnt = 0;
+    ll cnt1 = 0;
+    ll cnt2 = 0;
+    for(int i = 0; i < n; i++)
     {   
-        int cnt = 1;
-        int milgya = 0;
-        for(int i = 1; i < n; i++)
-        {
-            if(s[i] != s[i - 1]) 
-            {
-                cnt++;
-            }
-            else{
-                
-            }
-            if(i < n - 2 && s[i - 1] == s[i + 1]) milgya++;
+        char key = s[i];
+        cnt++;
+        bool flag = false;
+        while(s[i] == key){
+            flag = true;
+            i++;
         }
-        if(n == cnt) return cnt - 1;
-        else{
-            if(milgya >= 1) return cnt;
-            else return cnt - 1;
+        if(flag == true) i--;
+        else if(i > 0 && i < n - 1)
+        {
+            if(cnt1 == 0 && s[i-1]== s[i + 1]){
+                if(cnt2 == 1) cnt--;
+                else cnt-=2;
+                cnt1++;
+            }
+            else if(cnt2 == 0) cnt2++,cnt--;
         }
     }
+    return cnt;
 }
 int main()
 {
