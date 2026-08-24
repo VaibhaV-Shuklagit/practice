@@ -139,8 +139,8 @@ public:
         Node *left = head;
 
         // Recursively sort both halves
-        left = sortLL(left);
-        right = sortLL(right);
+        left = sortLL_Optimal(left);
+        right = sortLL_Optimal(right);
 
         // Merge sorted halves
         return mergeTwoSortedLinkedLists(left, right);
