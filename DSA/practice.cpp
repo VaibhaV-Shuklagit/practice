@@ -2,49 +2,51 @@
 using namespace std;
 using ll = long long;
 
-void Heapify(vector<int> &nums)
+void BeautifulArray(ll n, ll k, ll b, ll s)
 {
-    int n = nums.size();
-    for (int i = 1; i < n; i += 2)
+    if (s < k * b)
     {
-        for (int j = i; j < n; j *= 2)
-        {
-            if (nums[j] == i)
-                continue;
+        cout << "-1\n";
+         return;
+    }
+    
+    vector<ll> nums(n);
+    nums[0] = k * b;
+    s -= k * b;
+    for (int i = 1; i < n; i++)
+    {
+            if (s < k)
+            {
+                nums[i] = s;
+                s = 0;
+            }
             else
             {
-                if (nums[j] % (2 * i) != 0)
-                {
-                    cout << "No\n"; 
-                    return;
-                }
+                s -= k - 1;
+                nums[i] = k - 1;
             }
-        }
     }
-    cout << "Yes\n";
+    if (s > 0)
+        cout << "-1\n";
+    else
+    {
+        for (int i = 0; i < n; i++)
+            cout << nums[i] << " ";
+        cout << "\n";
+    }
 }
+
 int main()
 {
-
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-
-    int t;
+    ll t;
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        vector<int> nums(n + 1);
-        for (int i = 1; i < n; i++)
-            cin >> nums[i];
-         for (int i = 1; i <= 200000; i++)
-        {
-            for (int j = i; j <= 200000; j += i)
-            {
-                div[j]++;
-            }
-        }
+        ll n, b, k, s;
+        cin >> n >> k >> b >> s;
+        BeautifulArray(n, k, b, s);
     }
     return 0;
 }
