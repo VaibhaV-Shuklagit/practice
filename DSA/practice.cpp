@@ -2,51 +2,47 @@
 using namespace std;
 using ll = long long;
 
-void BeautifulArray(ll n, ll k, ll b, ll s)
+void ShoeShuffling(vector<ll> &nums)
 {
-    if (s < k * b)
+    int n = nums.size();
+    vector<int> shuffled;
+    for(ll i = 0; i < n; i++)
     {
-        cout << "-1\n";
-         return;
+        ll start = i + 1;
+        ll len = 1;
+        while(i < n - 1 && nums[i] == nums[i + 1])
+        {
+            i++;
+            len++;
+            shuffled.push_back(i + 1);
+        }
+        if(len == 1)
+        {
+            cout << "-1\n";
+            return;
+        }
+        // shuffled.push_back(i + 1);
+        shuffled.push_back(start);
     }
-    
-    vector<ll> nums(n);
-    nums[0] = k * b;
-    s -= k * b;
-    for (int i = 1; i < n; i++)
-    {
-            if (s < k)
-            {
-                nums[i] = s;
-                s = 0;
-            }
-            else
-            {
-                s -= k - 1;
-                nums[i] = k - 1;
-            }
-    }
-    if (s > 0)
-        cout << "-1\n";
-    else
-    {
-        for (int i = 0; i < n; i++)
-            cout << nums[i] << " ";
-        cout << "\n";
-    }
+    for(int i = 0; i < shuffled.size(); i++) cout << shuffled[i] << " ";
+    cout << "\n";
 }
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+
     ll t;
     cin >> t;
     while (t--)
     {
-        ll n, b, k, s;
-        cin >> n >> k >> b >> s;
-        BeautifulArray(n, k, b, s);
+        ll n;
+        cin >> n;
+        vector<ll> nums(n);
+        for (int i = 0; i < n; i++)
+            cin >> nums[i];
+        ShoeShuffling(nums);
     }
     return 0;
 }
